@@ -82,7 +82,7 @@ namespace Homework2
                 if(curr.Action.ToLower() == "suck" && curr.Dirty == true) //if the action is suck and the room is dirty then we have cleaned one room
                 {
                     curr.Dirty = false;
-
+                                        
                     RemoveDirt(curr.State); //removes it from the list of dirty rooms
 
                     Console.WriteLine("A dirty room has been cleaned with state: ({0},{1})", curr.State.row, curr.State.col);
@@ -94,6 +94,17 @@ namespace Homework2
 
                 if (dirt.Count == 0) //returns path cost of final goal node
                 {
+                    var prev = curr;
+
+                    Console.WriteLine("\nPath of Agent Backwards:");
+
+                    while(prev != null && prev.Action != string.Empty)
+                    {
+                        Console.WriteLine("{0}", prev.Action);
+
+                        prev = prev.Parent;
+                    }                  
+
                     Console.WriteLine("Generated: {0}", Generated);
                     Console.WriteLine("Expanded: {0}", Expanded);
                     return curr.Cost;
